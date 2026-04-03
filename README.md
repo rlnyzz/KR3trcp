@@ -23,7 +23,7 @@ CREATE DATABASE fastapi_auth;
 cp .env.example .env
 #отредактируйте .env под свои параметры БД
 
-# 4. ИНИЦИАЛИЗАЦИЯ БД И ЗАПУСК ПРОЕКТА:
+# 4. ИНИЦИАЛИЗАЦИЯ БД И ЗАПУСК ПРОЕКТА
    python init_db.py #прежде, чем выполнить - поменяйте в файле .env.example DB_PASSWORD на свой пароль
    uvicorn main:app --reload
 
@@ -41,40 +41,40 @@ TOKEN=$(curl -s -X POST http://localhost:8000/login \
 
 
 # TODO CRUD операции:
-#Создать Todo
+#Создать Todo:
 curl -X POST http://localhost:8000/todos/ \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title": "Buy milk", "description": "From the store"}'
 
-#Получить все Todo
+#Получить все Todo:
 curl -X GET "http://localhost:8000/todos/" \
   -H "Authorization: Bearer $TOKEN"
 
-#Получить Todo по ID
+#Получить Todo по ID:
 curl -X GET http://localhost:8000/todos/1 \
   -H "Authorization: Bearer $TOKEN"
 
-#Обновить Todo
+#Обновить Todo:
 curl -X PUT http://localhost:8000/todos/1 \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"completed": true}'
 
-#Удалить Todo
+#Удалить Todo:
 curl -X DELETE http://localhost:8000/todos/1 \
   -H "Authorization: Bearer $TOKEN"
 
 # Защищенные эндпоинты
-#Базовый защищенный ресурс
+#Базовый защищенный ресурс:
 curl -X GET http://localhost:8000/protected_resource \
   -H "Authorization: Bearer $TOKEN"
 
-#Список пользователей (только admin)
+#Список пользователей (только admin):
 curl -X GET http://localhost:8000/admin/users \
   -H "Authorization: Bearer $TOKEN"
 
-#Выход
+#Выход:
 curl -X POST http://localhost:8000/logout \
   -H "Authorization: Bearer $TOKEN"
 
