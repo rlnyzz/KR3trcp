@@ -1,20 +1,20 @@
 # ЭФБО-08-24, СЫСОЕВ ВИТАЛИЙ ВЯЧЕСЛАВОВИЧ
 # 1. КЛОНИРОВАНИЕ И УСТАНОВКА:
-Создайте папку проекта и скопируйте все файлы
+Создайте папку проекта и скопируйте все файлы:
 cd fastapi_auth_project
 
-Создайте виртуальное окружение
+Создайте виртуальное окружение:
 python -m venv venv
 source venv/bin/activate  # Linux/Mac или venv\Scripts\activate  # Windows
 
-Установите зависимости
+Установите зависимости:
 pip install -r requirements.txt
 
 # 2. НАСТРОЙКА PSQL(решил выбрать psql, а не sqlite):
-Запустите PostgreSQL
+Запустите PostgreSQL:
 sudo service postgresql start  # Linux 
 
-Создайте базу данных
+Создайте базу данных:
 sudo -u postgres psql
 CREATE DATABASE fastapi_auth;
 \q
@@ -24,12 +24,12 @@ cp .env.example .env
 #отредактируйте .env под свои параметры БД
 
 # 4. ИНИЦИАЛИЗАЦИЯ БД И ЗАПУСК ПРОЕКТА:
-   python init_db.py
+   python init_db.py #прежде, чем выполнить - поменяйте в файле .env.example DB_PASSWORD на свой пароль
    uvicorn main:app --reload
 
 
 # ТЕСТИРОВАНИЕ ЭНДПОИНТОВ:
-#Регистрация
+#Регистрация:
 curl -X POST http://localhost:8000/register \
   -H "Content-Type: application/json" \
   -d '{"username": "alice", "password": "alice123", "role": "user"}'
